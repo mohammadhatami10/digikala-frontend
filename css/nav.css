@@ -1,0 +1,81 @@
+/* ================= main navigation ================= */
+
+.main-nav {
+    padding: 10px 20px;
+    border-bottom: 1px solid var(--border-color);
+    background-color: #fff;
+}
+
+.menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+.menu-item {
+    font-size: 14px;
+    color: var(--text-color);
+    cursor: pointer;
+    position: relative;
+}
+
+.menu-item:hover {
+    color: var(--primary-color);
+}
+
+/* ================= dropdown / mega menu ================= */
+
+.has-dropdown {
+    padding-bottom: 10px;
+}
+
+.mega-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 2000;
+    min-width: 600px;
+    display: flex;
+    gap: 40px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all var(--transition-normal);
+}
+
+.has-dropdown:hover .mega-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* ================= mega columns ================= */
+
+.mega-column h4 {
+    margin: 0 0 10px;
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+.mega-column ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.mega-column li {
+    font-size: 13px;
+    padding: 6px 0;
+    color: #555;
+    cursor: pointer;
+}
+
+.mega-column li:hover {
+    color: var(--primary-color);
+}

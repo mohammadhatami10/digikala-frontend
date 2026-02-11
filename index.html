@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دیجی کالا</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-right">
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="logo">
+                <a href="#">دیجی کالا</a>
+            </div>
+
+            <div class="search-box">
+                <span class="search-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24">
+                        <path d="M21 21l-4.35-4.35m1.85-5.65a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </span>
+                <input type="text" placeholder="جستجو در دیجی کالا" id="search-input">
+            </div>
+
+            <button id="theme-toggle">🌙</button>
+        </div>
+
+        <div class="header-left">
+
+            <!-- فعلا بذار باشه -->
+            <a href="cart.html" class="cart-container">
+                <svg class="cart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.6 13h11.4l2-8H6"></path>
+                </svg>
+
+                <span class="cart-count">0</span>
+            </a>
+
+
+            <!-- فعلا بذار باشه -->
+            <div class="login">
+                <a href="#">ثبت نام | ورود</a>
+            </div>
+            <div class="cart">
+                <a href="#">
+                    <svg width="20" height="20" viewBox="0 0 24 24">
+                        <path d="M6 6h15l-1.5 9h-12z" fill="none" stroke="currentColor" stroke-width="2" />
+                        <circle cx="9" cy="21" r="1" />
+                        <circle cx="18" cy="21" r="1" />
+                    </svg>
+                    سبد خرید
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <nav class="main-nav">
+        <ul class="menu">
+            <li class="menu-item has-dropdown">
+                دسته‌بندی کالا
+                <div class="dropdown mega-menu">
+                    <div class="mega-column">
+                        <h4>کالای دیجیتال</h4>
+                        <ul>
+                            <li>موبایل</li>
+                            <li>لپ‌تاپ</li>
+                            <li>هدفون</li>
+                            <li>ساعت هوشمند</li>
+                        </ul>
+                    </div>
+                    <div class="mega-column">
+                        <h4>خانه و آشپزخانه</h4>
+                        <ul>
+                            <li>یخچال</li>
+                            <li>ماشین لباسشویی</li>
+                            <li>ظروف پخت و پز</li>
+                            <li>لوازم برقی</li>
+                        </ul>
+                    </div>
+                    <div class="mega-column">
+                        <h4>مد و پوشاک</h4>
+                        <ul>
+                            <li>مردانه</li>
+                            <li>زنانه</li>
+                            <li>بچگانه</li>
+                            <li>کفش</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </li>
+            <li class="menu-item">سوپرمارکت</li>
+            <li class="menu-item">پرفروش‌ترین‌ها</li>
+            <li class="menu-item">تخفیف‌ها</li>
+            <li class="menu-item">دیجی‌پلاس</li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="slider">
+            <div class="slider-wrapper">
+                <button class="slider-btn prev">
+                    &lt;
+                </button>
+                <button class="slider-btn next">
+                    &gt;
+                </button>
+
+                <div class="slider-dots">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+
+                <div class="slide active">
+                    <img src="assets/images/img5.jpg" alt="">
+                </div>
+                <div class="slide">
+                    <img src="assets/images/img6.jpg" alt="">
+                </div>
+                <div class="slide">
+                    <img src="assets/images/img7.jpg" alt="">
+                </div>
+                <div class="slide">
+                    <img src="assets/images/img8.jpg" alt="">
+                </div>
+                <div class="slide">
+                    <img src="assets/images/img9.jpg" alt="">
+                </div>
+                <div class="slide">
+                    <img src="assets/images/img10.jpg" alt="">
+                </div>
+            </div>
+        </section>
+
+        <section class="category-section">
+            <div class="category-wrapper">
+                <div class="category-card">
+                    <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="7" y="2" width="10" height="20" rx="2" ry="2"></rect>
+                        <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                    </svg>
+                    <p>موبایل</p>
+                </div>
+                <div class="category-card">
+                    <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="5" width="20" height="14" rx="2" ry="2"></rect>
+                        <line x1="2" y1="19" x2="22" y2="19"></line>
+                    </svg>
+                    <p>لپ‌تاپ</p>
+                </div>
+                <div class="category-card">
+                    <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 18v-6a9 9 0 0118 0v6"></path>
+                        <rect x="3" y="13" width="4" height="5" rx="1"></rect>
+                        <rect x="17" y="13" width="4" height="5" rx="1"></rect>
+                    </svg>
+                    <p>هدفون</p>
+                </div>
+                <div class="category-card">
+                    <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="7"></circle>
+                        <line x1="12" y1="12" x2="12" y2="9"></line>
+                        <line x1="12" y1="12" x2="14.5" y2="12"></line>
+                    </svg>
+                    <p>ساعت</p>
+                </div>
+                <div class="category-card">
+                    <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                        <line x1="8" y1="21" x2="16" y2="21"></line>
+                    </svg>
+                    <p>تلویزیون</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="product-section">
+            <h2 class="section-title">پرفروش‌ترین‌ها</h2>
+
+            <div class="filters" style="margin-bottom: 20px; display:flex; gap:10px; flex-wrap:wrap;">
+                <select id="category-filter">
+                    <option value="">همه دسته‌بندی‌ها</option>
+                    <option value="موبایل">موبایل</option>
+                    <option value="لپ‌تاپ">لپ‌تاپ</option>
+                    <option value="هدفون">هدفون</option>
+                    <option value="ساعت">ساعت</option>
+                    <option value="تلویزیون">تلویزیون</option>
+                </select>
+
+                <input type="number" id="min-price" placeholder="حداقل قیمت" style="width:120px; padding:5px;">
+                <input type="number" id="max-price" placeholder="حداکثر قیمت" style="width:120px; padding:5px;">
+            </div>
+
+            <div class="product-grid">
+                <div class="product-card" data-category="موبایل" data-id="1" data-title="گوشی هوشمند"
+                    data-price="25000000" data-image="assets/images/img1.jpg"
+                    data-gallery='["assets/images/img1.jpg","assets/images/img2.jpg","assets/images/img3.jpg","assets/images/img4.jpg"]'
+                    data-options='[
+        {"type":"رنگ","values":[{"name":"مشکی","diff":0,"available":true},{"name":"نقره‌ای","diff":500000,"available":false},{"name":"آبی","diff":1000000,"available":true}]},
+        {"type":"ظرفیت","values":[{"name":"128GB","diff":0,"available":true},{"name":"256GB","diff":2000000,"available":false}]}
+     ]'>
+                    <a href="#" class="product-link">
+                        <span class="discount-badge">٪20</span>
+                        <img src="assets/images/img1.jpg" alt="محصول ۱">
+                        <h3 class="product-name">گوشی هوشمند</h3>
+                        <div class="price-box">
+                            <span class="old-price">۳۱,۰۰۰,۰۰۰</span>
+                            <span class="product-price">۲۵,۰۰۰,۰۰۰ تومان</span>
+                        </div>
+                    </a>
+                    <button class="add-to-cart" data-id="1" data-title="گوشی هوشمند" data-price="25000000">
+                        افزودن به سبد خرید
+                    </button>
+                </div>
+
+
+                <div class="product-card" data-category="هدفون" data-id="2" data-title="هدفون بی‌سیم"
+                    data-price="3500000" data-image="assets/images/img2.jpg"
+                    data-gallery='["assets/images/img1.jpg","assets/images/img2.jpg","assets/images/img3.jpg","assets/images/img4.jpg"]'
+                    data-options='[
+        {"type":"رنگ","values":[{"name":"مشکی","diff":0,"available":true},{"name":"نقره‌ای","diff":500000,"available":false},{"name":"آبی","diff":1000000,"available":true}]},
+        {"type":"ظرفیت","values":[{"name":"128GB","diff":0,"available":true},{"name":"256GB","diff":2000000,"available":false}]}
+     ]'>
+                    <a href="#" class="product-link">
+                        <img src="assets/images/img2.jpg" alt="محصول ۲">
+                        <h3 class="product-name">هدفون بی‌سیم</h3>
+                        <p class="product-price">۳,۵۰۰,۰۰۰ تومان</p>
+                    </a>
+                    <button class="add-to-cart" data-id="2" data-title="هدفون بی‌سیم" data-price="3500000">
+                        افزودن به سبد خرید
+                    </button>
+                </div>
+
+                <div class="product-card" data-category="لپ‌تاپ" data-id="3" data-title="لپ‌تاپ" data-price="55000000"
+                    data-image="assets/images/img3.jpg"
+                    data-gallery='["assets/images/img1.jpg","assets/images/img2.jpg","assets/images/img3.jpg","assets/images/img4.jpg"]'
+                    data-options='[
+        {"type":"رنگ","values":[{"name":"مشکی","diff":0,"available":true},{"name":"نقره‌ای","diff":500000,"available":false},{"name":"آبی","diff":1000000,"available":true}]},
+        {"type":"ظرفیت","values":[{"name":"128GB","diff":0,"available":true},{"name":"256GB","diff":2000000,"available":false}]}
+     ]'>
+                    <a href="#" class="product-link">
+                        <img src="assets/images/img3.jpg" alt="محصول ۳">
+                        <h3 class="product-name">لپ‌تاپ</h3>
+                        <p class="product-price">۵۵,۰۰۰,۰۰۰ تومان</p>
+                    </a>
+                    <button class="add-to-cart" data-id="3" data-title="لپ‌تاپ" data-price="55000000">
+                        افزودن به سبد خرید
+                    </button>
+                </div>
+
+                <div class="product-card" data-category="ساعت" data-id="4" data-title="ساعت هوشمند" data-price="4200000"
+                    data-image="assets/images/img4.jpg"
+                    data-gallery='["assets/images/img1.jpg","assets/images/img2.jpg","assets/images/img3.jpg","assets/images/img4.jpg"]'
+                    data-options='[
+        {"type":"رنگ","values":[{"name":"مشکی","diff":0,"available":true},{"name":"نقره‌ای","diff":500000,"available":false},{"name":"آبی","diff":1000000,"available":true}]},
+        {"type":"ظرفیت","values":[{"name":"128GB","diff":0,"available":true},{"name":"256GB","diff":2000000,"available":false}]}
+     ]'>
+                    <a href="#" class="product-link">
+                        <img src="assets/images/img4.jpg" alt="محصول ۴">
+                        <h3 class="product-name">ساعت هوشمند</h3>
+                        <p class="product-price">۴,۲۰۰,۰۰۰ تومان</p>
+                    </a>
+                    <button class="add-to-cart" data-id="4" data-title="ساعت هوشمند" data-price="4200000">
+                        افزودن به سبد خرید
+                    </button>
+                </div>
+
+            </div>
+
+            <p id="no-results" style="display:none; text-align:center; margin-top:20px; color:#555;">
+                محصولی یافت نشد
+            </p>
+
+        </section>
+    </main>
+    
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="footer-column">
+                <h4>دسترسی سریع</h4>
+                <ul>
+                    <li><a href="#">خانه</a></li>
+                    <li><a href="#">محصولات</a></li>
+                    <li><a href="#">پیشنهاد ویژه</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>درباره ما</h4>
+                <ul>
+                    <li><a href="#">تماس با ما</a></li>
+                    <li><a href="#">درباره دیجی‌کالا</a></li>
+                    <li><a href="#">سوالات متداول</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>شبکه‌های اجتماعی</h4>
+                <ul class="social">
+                    <li>
+                        <a href="#" target="_blank">
+                            <img src="assets/icons/instagram.jpg" alt="Instagram" />
+                            <span>Instagram</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank">
+                            <img src="assets/icons/twitter.jpg" alt="Twitter" />
+                            <span>Twitter</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank">
+                            <img src="assets/icons/linkedin.jpg" alt="LinkedIn" />
+                            <span>LinkedIn</span>
+                        </a>
+                    </li>
+                </ul>
+
+
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Digikala. تمام حقوق محفوظ است.</p>
+        </div>
+    </footer>
+
+    <div class="product-modal" id="productModal">
+        <div class="modal-content">
+            <button class="close-modal">✕</button>
+            <iframe id="productFrame" src="" frameborder="0"></iframe>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

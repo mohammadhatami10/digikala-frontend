@@ -1,0 +1,36 @@
+
+
+/* ================= style.css ================= */
+/* فایل اصلی که همه فایل‌های جزئی را import می‌کند */
+@import url("variables.css");
+
+/* تنظیمات پایه و متغیرها */
+@import url("base.css");
+
+/* هدر و سبد خرید */
+@import url("header.css");
+
+/* منو و مگا منو */
+@import url("nav.css");
+
+/* اسلایدر */
+@import url("slider.css");
+
+/* دسته‌بندی‌ها */
+@import url("category.css");
+
+/* کارت محصولات */
+@import url("product.css");
+
+/* صفحه سبد خرید */
+@import url("cart.css");
+
+/* فوتر */
+@import url("footer.css");
+
+/* media queryها و ریسپانسیو */
+@import url("responsive.css");
+
+/* جزئیات محصول */
+@import url("product-detail.css");
+
