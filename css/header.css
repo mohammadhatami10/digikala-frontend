@@ -1,5 +1,4 @@
 /* ================= header ================= */
-
 .header {
     position: relative;
     z-index: 1000;
@@ -20,14 +19,16 @@
 /* ================= mobile hamburger ================= */
 /* همبرگر اولیه */
 .mobile-menu-toggle {
-    display: none; /* فقط موبایل */
+    display: none;
+    /* فقط موبایل */
     flex-direction: column;
     justify-content: space-between;
     width: 25px;
     height: 20px;
     cursor: pointer;
     margin-left: 10px;
-    z-index: 10000; /* بالاتر از منو */
+    z-index: 10000;
+    /* بالاتر از منو */
 }
 
 .mobile-menu-toggle span {
@@ -44,8 +45,10 @@
 }
 
 .mobile-menu-toggle.active span:nth-child(2) {
-    opacity: 0; /* خط وسط محو می‌شود */
-    transform: translateX(20px); /* به راست حرکت می‌کند */
+    opacity: 0;
+    /* خط وسط محو می‌شود */
+    transform: translateX(20px);
+    /* به راست حرکت می‌کند */
 }
 
 .mobile-menu-toggle.active span:nth-child(3) {
@@ -61,7 +64,6 @@
 }
 
 /* ================= search ================= */
-
 .search-box {
     display: flex;
     align-items: center;
@@ -90,26 +92,17 @@
 }
 
 /* ================= login & cart ================= */
-
-.login a,
-.cart a {
+.login a {
     text-decoration: none;
     color: var(--text-color);
     font-size: 14px;
 }
 
-.cart a {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.cart a:hover {
+.login a:hover {
     color: var(--primary-color);
 }
 
 /* ================= cart badge ================= */
-
 .cart-container {
     position: relative;
     width: 28px;

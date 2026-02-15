@@ -6,6 +6,7 @@
         flex-direction: column;
         align-items: flex-start;
         padding: 10px 15px;
+        gap: 10px;
     }
 
     .header-right,
@@ -35,6 +36,14 @@
     .mobile-menu-toggle {
         display: flex;
     }
+}
+
+/* لاگین */
+@media (max-width: 480px) {
+  .auth-container {
+    margin: 20px;
+    padding: 15px;
+  }
 }
 
 /* main-nav موبایل */
@@ -148,6 +157,22 @@
 
     .product-card img {
         height: auto;
+    }
+}
+
+@media (max-width: 700px) {
+    .product-wrapper {
+        flex-direction: column; /* گالری بالا، جزئیات پایین */
+    }
+
+    .thumbnail-list {
+        margin: 0 auto;
+        gap: 8px;
+    }
+
+    .thumbnail-list img {
+        width: 60px;
+        height: 60px;
     }
 }
 

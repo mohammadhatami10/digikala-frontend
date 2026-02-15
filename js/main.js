@@ -1,332 +1,312 @@
+/* ================== Utilities ================== */
+const $ = selector => document.querySelector(selector);
+const $$ = selector => document.querySelectorAll(selector);
+
 function toEnglishNumber(str) {
     const persianDigits = '۰۱۲۳۴۵۶۷۸۹';
     return str.replace(/[۰-۹]/g, d => persianDigits.indexOf(d));
 }
 
-/******************** اسلایدر ********************/
-const slides = document.querySelectorAll('.slide');
-const dots = document.querySelectorAll('.dot');
-const prevBtn = document.querySelector('.prev');
-const nextBtn = document.querySelector('.next');
+/* ================== Slider ================== */
+(function initSlider() {
+    const slides = $$('.slide');
+    const dots = $$('.dot');
+    const prevBtn = $('.prev');
+    const nextBtn = $('.next');
 
-let currentIndex = 0;
-const totalSlides = slides.length;
+    if (!slides.length) return;
 
-function showSlide(index) {
-    slides.forEach((slide, i) => {
-        slide.className = 'slide';
+    let currentIndex = 0;
+    const total = slides.length;
 
-        if (i === index) {
-            slide.classList.add('active');
-        }
-        else if (i === (index - 1 + totalSlides) % totalSlides) {
-            slide.classList.add('prev');
-        }
-        else if (i === (index + 1) % totalSlides) {
-            slide.classList.add('next');
-        }
-    });
-
-    dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === index);
-    });
-}
-
-
-nextBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % totalSlides;
-    showSlide(currentIndex);
-});
-
-prevBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-    showSlide(currentIndex);
-});
-
-dots.forEach((dot, i) => {
-    dot.addEventListener('click', () => {
-        currentIndex = i;
-        showSlide(currentIndex);
-    });
-});
-
-setInterval(() => {
-    currentIndex = (currentIndex + 1) % totalSlides;
-    showSlide(currentIndex);
-}, 5000);
-
-showSlide(currentIndex);
-
-
-
-/******************** سبد خرید + انیمیشن ********************/
-const addToCartButtons = document.querySelectorAll('.add-to-cart');
-const cartContainer = document.querySelector('.cart-container');
-
-// دریافت سبد خرید
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-// حذف آیتم‌های با qty صفر (ایمن‌سازی)
-cart = cart.filter(item => item.qty > 0);
-localStorage.setItem('cart', JSON.stringify(cart));
-
-// آپدیت badge
-function updateCartBadge() {
-    const cartCount = document.querySelector('.cart-count');
-    if (!cartCount) return;
-
-    // ایمن‌سازی دوباره
-    cart = cart.filter(item => item.qty > 0);
-    localStorage.setItem('cart', JSON.stringify(cart));
-
-    const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
-    cartCount.textContent = totalQty;
-}
-
-// اجرای اولیه
-updateCartBadge();
-
-addToCartButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        const id = button.dataset.id;
-        const title = button.dataset.title;
-        const price = parseInt(button.dataset.price);
-
-        const existingProduct = cart.find(item => item.id === id);
-        if (existingProduct) {
-            existingProduct.qty++;
-        } else {
-            cart.push({
-                cartId: `${id}|default`,
-                id: id,
-                title: title,
-                price: price,
-                options: {},
-                qty: 1
-            });
-
-        }
-
-        localStorage.setItem('cart', JSON.stringify(cart));
-
-        // انیمیشن پرواز تصویر
-        const img = button.closest('.product-card')?.querySelector('img');
-        if (img) {
-            const flyingImg = img.cloneNode(true);
-            flyingImg.classList.add('flying-img');
-            document.body.appendChild(flyingImg);
-
-            const imgRect = img.getBoundingClientRect();
-            flyingImg.style.left = imgRect.left + 'px';
-            flyingImg.style.top = imgRect.top + 'px';
-
-            const cartRect = cartContainer.getBoundingClientRect();
-
-            requestAnimationFrame(() => {
-                flyingImg.style.transform = `translate(${cartRect.left - imgRect.left}px, ${cartRect.top - imgRect.top}px) scale(0.1)`;
-                flyingImg.style.opacity = '0.5';
-            });
-
-            setTimeout(() => flyingImg.remove(), 800);
-        }
-
-        updateCartBadge();
-
-        // افکت badge
-        const badge = cartContainer?.querySelector('.cart-count');
-        badge?.classList.add('pop');
-        setTimeout(() => badge?.classList.remove('pop'), 200);
-    });
-});
-
-// Toggle mobile menu
-const mobileToggle = document.querySelector('.mobile-menu-toggle');
-const mainNav = document.querySelector('.main-nav');
-
-mobileToggle.addEventListener('click', () => {
-    // باز و بسته شدن منو با انیمیشن
-    mainNav.classList.toggle('active');
-
-    // انیمیشن همبرگر → ضربدر
-    mobileToggle.classList.toggle('active');
-});
-
-
-////////////////// سرچ واقعی
-const searchInput = document.getElementById('search-input');
-const productCards = document.querySelectorAll('.product-card');
-const noResults = document.getElementById('no-results');
-
-let debounceTimer;
-
-searchInput.addEventListener('input', () => {
-    clearTimeout(debounceTimer);
-
-    debounceTimer = setTimeout(() => {
-        const query = searchInput.value.trim().toLowerCase();
-        let visibleCount = 0;
-
-        productCards.forEach(card => {
-            const title = card.querySelector('.product-name').textContent.toLowerCase();
-            if (title.includes(query)) {
-                card.style.display = 'block';
-                visibleCount++;
-            } else {
-                card.style.display = 'none';
-            }
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.className = 'slide';
+            if (i === index) slide.classList.add('active');
+            else if (i === (index - 1 + total) % total) slide.classList.add('prev');
+            else if (i === (index + 1) % total) slide.classList.add('next');
         });
 
-        // نمایش یا مخفی کردن پیام
-        if (visibleCount === 0) {
-            noResults.style.display = 'block';
-        } else {
-            noResults.style.display = 'none';
-        }
-    }, 300); // 300ms delay برای debounce
-});
-
-//////////////////// فیلتر محصولات
-const categoryFilter = document.getElementById('category-filter');
-const minPriceInput = document.getElementById('min-price');
-const maxPriceInput = document.getElementById('max-price');
-
-function filterProducts() {
-    const query = searchInput.value.trim().toLowerCase();
-    const selectedCategory = categoryFilter.value;
-    const minPrice = parseInt(minPriceInput.value) || 0;
-    const maxPrice = parseInt(maxPriceInput.value) || Infinity;
-
-    let visibleCount = 0;
-
-    productCards.forEach(card => {
-        const title = card.querySelector('.product-name').textContent.toLowerCase();
-        const priceText = card.querySelector('.product-price').textContent;
-        const price = parseInt(
-            toEnglishNumber(priceText).replace(/[^0-9]/g, '')
+        dots.forEach((dot, i) =>
+            dot.classList.toggle('active', i === index)
         );
-        const category = card.dataset.category || ""; // باید category به data-category اضافه بشه
+    }
 
-        // بررسی همه فیلترها
-        const matchesSearch = title.includes(query);
-        const matchesCategory = !selectedCategory || category === selectedCategory;
-        const matchesPrice = price >= minPrice && price <= maxPrice;
-
-        if (matchesSearch && matchesCategory && matchesPrice) {
-            card.style.display = 'block';
-            visibleCount++;
-        } else {
-            card.style.display = 'none';
-        }
+    nextBtn?.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % total;
+        showSlide(currentIndex);
     });
 
-    noResults.style.display = visibleCount === 0 ? 'block' : 'none';
-}
+    prevBtn?.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + total) % total;
+        showSlide(currentIndex);
+    });
 
-// event listener ها
-searchInput.addEventListener('input', () => {
-    clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(filterProducts, 300);
-});
+    dots.forEach((dot, i) =>
+        dot.addEventListener('click', () => {
+            currentIndex = i;
+            showSlide(currentIndex);
+        })
+    );
 
-categoryFilter.addEventListener('change', filterProducts);
-minPriceInput.addEventListener('input', filterProducts);
-maxPriceInput.addEventListener('input', filterProducts);
+    setInterval(() => {
+        currentIndex = (currentIndex + 1) % total;
+        showSlide(currentIndex);
+    }, 5000);
 
-productCards.forEach(card => {
-    const link = card.querySelector('a');
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
+    showSlide(currentIndex);
+})();
 
-        const id = card.dataset.id;
-        const product = {
-            id: id,
-            title: card.dataset.title,
-            price: parseInt(card.dataset.price),
-            img: card.dataset.image,
-            gallery: [
-                card.dataset.image,
-                `assets/images/img${Math.min(10, parseInt(id) + 1)}.jpg`,
-                `assets/images/img${Math.min(10, parseInt(id) + 2)}.jpg`,
-                `assets/images/img${Math.min(10, parseInt(id) + 3)}.jpg`
-            ],
-            options: [
-                {
-                    type: 'رنگ', values: [
-                        { name: 'مشکی', diff: 0, available: true },
-                        { name: 'نقره‌ای', diff: 500000, available: false },
-                        { name: 'آبی', diff: 1000000, available: true }
-                    ]
-                },
-                {
-                    type: 'ظرفیت', values: [
-                        { name: '128GB', diff: 0, available: true },
-                        { name: '256GB', diff: 2000000, available: false }
-                    ]
-                }
-            ]
-        };
+/* ================== Cart ================== */
+(function initCart() {
+    const buttons = $$('.add-to-cart');
+    const cartContainer = $('.cart-container');
+    const cartCount = $('.cart-count');
 
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart = cart.filter(item => item.qty > 0);
+    saveCart();
+
+    function saveCart() {
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }
+
+    function updateBadge() {
+        if (!cartCount) return;
+        const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+        cartCount.textContent = totalQty;
+    }
+
+    updateBadge();
+
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const { id, title, price } = btn.dataset;
+            const existing = cart.find(item => item.id === id);
+
+            if (existing) existing.qty++;
+            else {
+                cart.push({
+                    cartId: `${id}|default`,
+                    id,
+                    title,
+                    price: parseInt(price),
+                    options: {},
+                    qty: 1
+                });
+            }
+
+            saveCart();
+            updateBadge();
+
+            animateToCart(btn, cartContainer);
+        });
+    });
+
+    function animateToCart(button, cartEl) {
+        if (!cartEl) return;
+
+        const img = button.closest('.product-card')?.querySelector('img');
+        if (!img) return;
+
+        const flying = img.cloneNode(true);
+        flying.classList.add('flying-img');
+        document.body.appendChild(flying);
+
+        const imgRect = img.getBoundingClientRect();
+        const cartRect = cartEl.getBoundingClientRect();
+
+        flying.style.left = imgRect.left + 'px';
+        flying.style.top = imgRect.top + 'px';
+
+        requestAnimationFrame(() => {
+            flying.style.transform = `translate(${cartRect.left - imgRect.left}px, ${cartRect.top - imgRect.top}px) scale(0.1)`;
+            flying.style.opacity = '0.5';
+        });
+
+        setTimeout(() => flying.remove(), 800);
+
+        cartCount?.classList.add('pop');
+        setTimeout(() => cartCount?.classList.remove('pop'), 200);
+    }
+})();
+
+/* ================== Search + Filter ================== */
+(function initFilters() {
+    const searchInput = $('#search-input');
+    const cards = $$('.product-card');
+    const noResults = $('#no-results');
+    const categoryFilter = $('#category-filter');
+    const minPriceInput = $('#min-price');
+    const maxPriceInput = $('#max-price');
+
+    if (!searchInput) return;
+
+    let debounceTimer;
+
+    function filterProducts() {
+        const query = searchInput.value.trim().toLowerCase();
+        const selectedCategory = categoryFilter?.value || "";
+        const minPrice = parseInt(minPriceInput?.value) || 0;
+        const maxPrice = parseInt(maxPriceInput?.value) || Infinity;
+
+        let visibleCount = 0;
+
+        cards.forEach(card => {
+            const title = card.querySelector('.product-name').textContent.toLowerCase();
+            const priceText = card.querySelector('.product-price').textContent;
+            const price = parseInt(
+                toEnglishNumber(priceText).replace(/[^0-9]/g, '')
+            );
+            const category = card.dataset.category || "";
+
+            const matches =
+                title.includes(query) &&
+                (!selectedCategory || category === selectedCategory) &&
+                price >= minPrice &&
+                price <= maxPrice;
+
+            card.style.display = matches ? 'block' : 'none';
+            if (matches) visibleCount++;
+        });
+
+        if (noResults)
+            noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+
+    searchInput.addEventListener('input', () => {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(filterProducts, 300);
+    });
+
+    categoryFilter?.addEventListener('change', filterProducts);
+    minPriceInput?.addEventListener('input', filterProducts);
+    maxPriceInput?.addEventListener('input', filterProducts);
+})();
+
+/* ================== Dark Mode ================== */
+(function initDarkMode() {
+    const toggleBtn = $('#theme-toggle');
+    const isDark = localStorage.getItem('darkMode') === 'enabled';
+
+    if (isDark) document.body.classList.add('dark-mode');
+    if (toggleBtn) toggleBtn.textContent = isDark ? '☀️' : '🌙';
+
+    toggleBtn?.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        const dark = document.body.classList.contains('dark-mode');
+        localStorage.setItem('darkMode', dark ? 'enabled' : 'disabled');
+        toggleBtn.textContent = dark ? '☀️' : '🌙';
+    });
+})();
+
+/* ================== Product Popup ================== */
+(function initProductPopup() {
+    const modal = $('#productModal');
+    const frame = $('#productFrame');
+    const closeBtn = $('.close-modal');
+    const cards = $$('.product-card');
+
+    if (!modal || !frame) return;
+
+    function openPopup(product) {
         localStorage.setItem('selectedProduct', JSON.stringify(product));
-        window.location.href = 'product.html';
+        frame.src = 'product.html';
+        modal.classList.add('active');
+    }
+
+    closeBtn?.addEventListener('click', () => {
+        modal.classList.remove('active');
+        frame.src = '';
     });
-});
 
-// حالت شب
-/* ================== Dark Mode (Global) ================== */
-const themeToggleBtn = document.getElementById('theme-toggle');
+    cards.forEach(card => {
+        const link = card.querySelector('.product-link');
+        if (!link) return;
 
-// اعمال حالت ذخیره‌شده
-if (localStorage.getItem('darkMode') === 'enabled') {
-    document.body.classList.add('dark-mode');
-    if (themeToggleBtn) themeToggleBtn.textContent = '☀️';
-} else {
-    if (themeToggleBtn) themeToggleBtn.textContent = '🌙';
-}
+        link.addEventListener('click', e => {
+            e.preventDefault();
 
-// تغییر حالت با کلیک
-themeToggleBtn?.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
+            const product = {
+                id: card.dataset.id,
+                title: card.dataset.title,
+                price: parseInt(card.dataset.price),
+                img: card.dataset.image,
+                gallery: JSON.parse(card.dataset.gallery || "[]"),
+                options: JSON.parse(card.dataset.options || "[]")
+            };
 
-    const isDark = document.body.classList.contains('dark-mode');
-    localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
-
-    themeToggleBtn.textContent = isDark ? '☀️' : '🌙';
-});
-/* ================== End Dark Mode ================== */
-
-
-// //////////////////////////////////////////////////////////////////////////////
-// ==== پاپ‌آپ محصولات ====
-const modal = document.getElementById('productModal');
-const frame = document.getElementById('productFrame');
-const closeBtn = document.querySelector('.close-modal');
-
-function openProductPopup(product) {
-    localStorage.setItem('selectedProduct', JSON.stringify(product));
-    frame.src = 'product.html';
-    modal.classList.add('active');
-}
-
-closeBtn.addEventListener('click', () => {
-    modal.classList.remove('active');
-    frame.src = '';
-});
-
-productCards.forEach(card => {
-    const link = card.querySelector('.product-link');
-    link.addEventListener('click', e => {
-        e.preventDefault(); // مهم: جلوگیری از دنبال کردن href
-        const product = {
-            id: card.dataset.id,
-            title: card.dataset.title,
-            price: parseInt(card.dataset.price),
-            img: card.dataset.image,
-            gallery: JSON.parse(card.dataset.gallery),
-            options: JSON.parse(card.dataset.options)
-        };
-        openProductPopup(product); // تابعی که modal رو باز می‌کنه
+            openPopup(product);
+        });
     });
+})();
+
+/* ================= mobile hamburger ================= */
+(function initMobileMenu() {
+    const toggle = document.querySelector('.mobile-menu-toggle');
+    const nav = document.querySelector('.main-nav');
+
+    if (!toggle || !nav) return;
+
+    toggle.addEventListener('click', () => {
+        toggle.classList.toggle('active');
+        nav.classList.toggle('active'); // کلاس active که در CSS داریم
+    });
+})();
+
+/* ================== Auth Modal ================== */
+const loginForm = document.getElementById("login-form");
+const signupForm = document.getElementById("signup-form");
+const showSignup = document.getElementById("show-signup");
+const showLogin = document.getElementById("show-login");
+
+const authPopup = document.getElementById("auth-popup");
+const openAuthBtn = document.getElementById("open-auth");
+const closePopupBtn = document.querySelector(".close-popup");
+
+// باز کردن پاپ‌آپ
+openAuthBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  authPopup.classList.add("active");
+  loginForm.classList.add("active");
+  signupForm.classList.remove("active");
 });
 
+// بستن پاپ‌آپ
+closePopupBtn.addEventListener("click", () => authPopup.classList.remove("active"));
 
+// سوئیچ فرم
+showSignup.addEventListener("click", () => {
+  loginForm.classList.remove("active");
+  signupForm.classList.add("active");
+});
+showLogin.addEventListener("click", () => {
+  signupForm.classList.remove("active");
+  loginForm.classList.add("active");
+});
 
+// نمایش/مخفی کردن پسورد
+document.querySelectorAll(".toggle-password").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const input = btn.previousElementSibling;
+    input.type = input.type === "password" ? "text" : "password";
+  });
+});
+
+// اعتبارسنجی ساده ثبت‌نام
+signupForm.addEventListener("submit", e => {
+  e.preventDefault();
+  let valid = true;
+  const name = document.getElementById("signup-name");
+  const email = document.getElementById("signup-email");
+  const pass = document.getElementById("signup-password");
+  const pass2 = document.getElementById("signup-password2");
+  document.querySelectorAll("#signup-form .error-message").forEach(span => span.textContent = "");
+
+  if(name.value.trim().length < 3){ name.nextElementSibling.textContent = "نام کوتاه است"; valid = false; }
+  if(!email.value.includes("@")){ email.nextElementSibling.textContent = "ایمیل نامعتبر"; valid = false; }
+  if(pass.value.length < 6){ pass.nextElementSibling.textContent = "رمز حداقل ۶ کاراکتر"; valid = false; }
+  if(pass.value !== pass2.value){ pass2.nextElementSibling.textContent = "رمزها مطابقت ندارند"; valid = false; }
+
+  if(valid) alert("ثبت نام موفق!");
+});

@@ -1,5 +1,4 @@
 /* ================= cart page ================= */
-
 .cart-page {
     max-width: 800px;
     margin: 40px auto;
@@ -9,7 +8,7 @@
     color: #eee;
 }
 
-.cart-page h2{
+.cart-page h2 {
     color: #333;
 }
 
@@ -50,6 +49,29 @@
     color: #333;
 }
 
-.cart-empty{
+.cart-empty {
     color: #333;
+}
+
+/* بالای سبد خرید */
+.cart-top{
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* بازگشت */
+.close-cart {
+    position: absolute;
+    left: 10px;
+    background: none;
+    color: #333;
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-size: 44px;
+    margin-bottom: 15px;
+}
+
+.close-cart:hover {
+    color: #ef394e;
 }

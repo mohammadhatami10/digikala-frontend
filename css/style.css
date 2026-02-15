@@ -1,10 +1,7 @@
-
-
-/* ================= style.css ================= */
-/* فایل اصلی که همه فایل‌های جزئی را import می‌کند */
+/* متغیرها */
 @import url("variables.css");
 
-/* تنظیمات پایه و متغیرها */
+/* تنظیمات پایه */
 @import url("base.css");
 
 /* هدر و سبد خرید */
@@ -34,3 +31,8 @@
 /* جزئیات محصول */
 @import url("product-detail.css");
 
+/* حالت شب */
+@import url("dark-mode.css");
+
+/* login */
+@import url("login.css");

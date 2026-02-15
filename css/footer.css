@@ -1,5 +1,4 @@
 /* ================= footer ================= */
-
 .footer {
     background-color: #222;
     color: #fff;
@@ -64,41 +63,4 @@
 
 .social li a:hover {
     transform: scale(1.2);
-}
-
-@media (max-width: 600px) {
-    .footer-top {
-        flex-direction: column;
-        gap: 30px;
-    }
-
-    .footer-column h4,
-    .footer-column ul li,
-    .social li a {
-        text-align: center;
-        justify-content: center;
-    }
-
-    .social li a {
-        display: block;
-    }
-
-    .social li a img {
-        width: 28px;
-        height: 28px;
-    }
-}
-
-@media (max-width: 480px) {
-    .footer {
-        padding: 30px 15px 15px 15px;
-    }
-
-    .footer-bottom {
-        font-size: 12px;
-    }
-
-    .social li a span {
-        display: none;
-    }
 }

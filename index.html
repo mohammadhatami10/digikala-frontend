@@ -7,7 +7,6 @@
     <title>دیجی کالا</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-
 </head>
 
 <body>
@@ -37,8 +36,72 @@
         </div>
 
         <div class="header-left">
+            <!-- لینک ورود / نمایش نام کاربر -->
+            <div class="login">
+                <a href="#" id="open-auth">ثبت‌نام | ورود</a>
+            </div>
 
-            <!-- فعلا بذار باشه -->
+            <!-- پاپ‌آپ ورود و ثبت‌نام -->
+            <div id="auth-popup" class="auth-popup">
+                <div class="auth-container">
+                    <button class="close-popup">&times;</button>
+
+                    <!-- فرم ورود -->
+                    <form id="login-form" class="auth-form active">
+                        <h2>ورود</h2>
+                        <div class="form-group">
+                            <label for="login-email">ایمیل</label>
+                            <input type="email" id="login-email" required placeholder="example@mail.com">
+                            <span class="error-message"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">رمز عبور</label>
+                            <div class="password-wrapper">
+                                <input type="password" id="login-password" required placeholder="رمز عبور">
+                                <button type="button" class="toggle-password">👁️</button>
+                            </div>
+                            <span class="error-message"></span>
+                        </div>
+                        <button type="submit" class="auth-btn">ورود</button>
+                        <p class="switch-form">حساب نداری؟ <span id="show-signup">ثبت‌نام</span></p>
+                    </form>
+
+                    <!-- فرم ثبت‌نام -->
+                    <form id="signup-form" class="auth-form">
+                        <h2>ثبت‌نام</h2>
+                        <div class="form-group">
+                            <label for="signup-name">نام کامل</label>
+                            <input type="text" id="signup-name" required placeholder="نام و نام خانوادگی">
+                            <span class="error-message"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-email">ایمیل</label>
+                            <input type="email" id="signup-email" required placeholder="example@mail.com">
+                            <span class="error-message"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-password">رمز عبور</label>
+                            <div class="password-wrapper">
+                                <input type="password" id="signup-password" required placeholder="رمز عبور">
+                                <button type="button" class="toggle-password">👁️</button>
+                            </div>
+                            <span class="error-message"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-password2">تکرار رمز عبور</label>
+                            <div class="password-wrapper">
+                                <input type="password" id="signup-password2" required placeholder="تکرار رمز عبور">
+                                <button type="button" class="toggle-password">👁️</button>
+                            </div>
+                            <span class="error-message"></span>
+                        </div>
+                        <button type="submit" class="auth-btn">ثبت‌نام</button>
+                        <p class="switch-form">حساب داری؟ <span id="show-login">ورود</span></p>
+                    </form>
+                </div>
+            </div>
+
+            <!-- آیکون سبد خرید -->
             <a href="cart.html" class="cart-container">
                 <svg class="cart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round">
@@ -49,22 +112,6 @@
 
                 <span class="cart-count">0</span>
             </a>
-
-
-            <!-- فعلا بذار باشه -->
-            <div class="login">
-                <a href="#">ثبت نام | ورود</a>
-            </div>
-            <div class="cart">
-                <a href="#">
-                    <svg width="20" height="20" viewBox="0 0 24 24">
-                        <path d="M6 6h15l-1.5 9h-12z" fill="none" stroke="currentColor" stroke-width="2" />
-                        <circle cx="9" cy="21" r="1" />
-                        <circle cx="18" cy="21" r="1" />
-                    </svg>
-                    سبد خرید
-                </a>
-            </div>
         </div>
     </header>
 
@@ -296,7 +343,7 @@
 
         </section>
     </main>
-    
+
     <footer class="footer">
         <div class="footer-top">
             <div class="footer-column">
@@ -355,6 +402,7 @@
     </div>
 
     <script src="js/main.js"></script>
+    <script src="js/login.js"></script>
 </body>
 
 </html>

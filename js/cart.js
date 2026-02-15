@@ -130,3 +130,9 @@ function updateCartBadge() {
 // اجرای اولیه
 renderCart();
 updateCartBadge();
+
+////////////////////////////بازگشت
+const closeCartBtn = document.getElementById('close-cart');
+closeCartBtn?.addEventListener('click', () => {
+    window.location.href = 'index.html';
+});

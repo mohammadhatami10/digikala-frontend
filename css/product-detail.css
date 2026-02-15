@@ -1,26 +1,33 @@
+/* صفحه محصول */
 .product-page {
     padding: 30px 15px;
 }
 
+/* گالری و جزئیات کنار هم */
 .product-wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
     gap: 40px;
 }
 
+/* گالری */
 .product-gallery {
+    flex: 1 1 50%;
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
+/* عکس اصلی */
 .main-image {
     width: 100%;
+    max-width: 100%;
     border-radius: 12px;
 }
 
+/* ردیف تصاویر کوچک */
 .thumbnail-list {
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
 }
 
@@ -39,18 +46,22 @@
     border-color: #ef394e;
 }
 
-.product-options {
-    margin-top: 20px;
+/* جزئیات محصول */
+.product-info {
+    flex: 1 1 50%;
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-.option-group p {
-    margin: 0 0 5px 0;
-    font-weight: bold;
+/* گزینه‌ها */
+.product-options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
+/* گزینه‌های انتخابی */
 .option-btn {
     padding: 6px 12px;
     border: 1px solid #ccc;
@@ -64,4 +75,23 @@
 .option-btn.active {
     border-color: #ef394e;
     background-color: #ffe5e8;
+}
+
+/* دکمه افزودن به سبد خرید */
+.add-to-cart-btn {
+    width: 50%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: #ef394e;
+    color: #fff;
+    cursor: pointer;
+    margin: 0 auto;
+}
+
+/* برای iframe داخل گالری یا مدال */
+.product-gallery iframe,
+.product-gallery img {
+    max-width: 100%;
+    height: auto;
 }

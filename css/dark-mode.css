@@ -1,0 +1,133 @@
+/* ================= dark mode ================= */
+/* دکمه حالت شب */
+#theme-toggle {
+    width: 50px;
+    height: 35px;
+    font-size: 16px;
+    background-color: #333;
+    border-radius: 100%;
+    cursor: pointer;
+    transition: background-color var(--transition-normal);
+}
+
+.theme-toggle-1 {
+    margin: 10px 10px 0 10px;
+}
+
+/* حالت شب اصلی */
+body.dark-mode {
+    background-color: #121212;
+    color: #eee;
+}
+
+/* ================= header ================= */
+body.dark-mode .header a,
+body.dark-mode .cart-container svg,
+body.dark-mode .cart-summary,
+body.dark-mode .cart-empty,
+body.dark-mode .product-card h3 {
+    color: #eee;
+}
+
+body.dark-mode #theme-toggle {
+    background-color: #61c2d7;
+}
+
+body.dark-mode .header .logo a {
+    color: #ef394e;
+}
+
+body.dark-mode .header a:hover {
+    color: #ef394e;
+}
+
+/* Dark Mode */
+body.dark-mode .auth-container {
+  background-color: #1e1e1e;
+  color: #eee;
+}
+
+body.dark-mode .auth-form input {
+  background-color: #333;
+  color: #eee;
+  border-color: #555;
+}
+
+body.dark-mode .auth-btn {
+  background-color: var(--primary-color);
+}
+
+body.dark-mode .toggle-password {
+  color: #eee;
+}
+
+/* ================= navigation ================= */
+body.dark-mode .main-nav,
+body.dark-mode .mega-menu,
+body.dark-mode .category-section,
+body.dark-mode .product-options .option-btn {
+    background-color: #333;
+    color: #eee;
+}
+
+body.dark-mode .menu-item:hover,
+body.dark-mode .mega-column li:hover {
+    color: var(--primary-color);
+}
+
+body.dark-mode .mega-column h4,
+body.dark-mode .main-nav li,
+body.dark-mode .category-section p {
+    color: #eee;
+}
+
+/* ================= slider ================= */
+body.dark-mode .slider-btn:hover {
+    background-color: #333;
+}
+
+/* ================= product ================= */
+body.dark-mode .product-section,
+body.dark-mode .product-page {
+    background-color: #121212;
+    color: #eee;
+}
+
+body.dark-mode .product-card {
+    background-color: #1e1e1e;
+    color: #eee;
+}
+
+body.dark-mode .product-section select,
+body.dark-mode .product-section input {
+    background-color: #333;
+    color: #eee;
+}
+
+/* تصاویر با opacity */
+body.dark-mode .product-card img,
+body.dark-mode .main-image {
+    opacity: 0.5;
+}
+
+/* ================= cart ================= */
+body.dark-mode .cart-page {
+    background-color: #333;
+    color: #eee;
+}
+
+body.dark-mode .close-cart {
+    color: #eee;
+}
+
+body.dark-mode .close-cart:hover {
+    color: #ef394e;
+}
+
+body.dark-mode .cart-page h2 {
+    color: #eee;
+}
+
+body.dark-mode .cart-item {
+    background-color: #121212;
+}
