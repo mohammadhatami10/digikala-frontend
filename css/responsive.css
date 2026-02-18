@@ -1,23 +1,29 @@
 /* ================= responsive general ================= */
 
 /* ================= header ================= */
-@media (max-width: 900px) {
+@media (max-width: 800px) {
+    .search-box {
+        width: 50%;
+    }
+}
+
+@media (max-width: 600px) {
     .header {
         flex-direction: column;
         align-items: flex-start;
-        padding: 10px 15px;
-        gap: 10px;
+        padding: 7px 10px;
+        gap: 7px;
     }
 
     .header-right,
     .header-left {
-        gap: 10px;
+        gap: 5px;
         width: 100%;
         justify-content: space-between;
     }
 
     .search-box {
-        width: 50%;
+        width: 60%;
     }
 
     .cart-container {
@@ -32,22 +38,22 @@
 }
 
 /* نمایش فقط در موبایل */
-@media (max-width: 768px) {
+@media (max-width: 568px) {
     .mobile-menu-toggle {
         display: flex;
     }
 }
 
 /* لاگین */
-@media (max-width: 480px) {
-  .auth-container {
-    margin: 20px;
-    padding: 15px;
-  }
+@media (max-width: 380px) {
+    .auth-container {
+        margin: 0px;
+        padding: 0px;
+    }
 }
 
 /* main-nav موبایل */
-@media (max-width: 768px) {
+@media (max-width: 568px) {
     .main-nav {
         display: flex;
         flex-direction: column;
@@ -74,7 +80,7 @@
 
 
 /* ================= main nav ================= */
-@media (max-width: 768px) {
+@media (max-width: 568px) {
     .main-nav {
         padding: 10px 15px;
     }
@@ -161,8 +167,25 @@
 }
 
 @media (max-width: 700px) {
+    .product-gallery {
+        width: 60%;
+    }
+
+    .thumbnail-list img {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+@media (max-width: 500px) {
     .product-wrapper {
-        flex-direction: column; /* گالری بالا، جزئیات پایین */
+        flex-direction: column;
+        /* گالری بالا، جزئیات پایین */
+    }
+
+    .product-gallery{
+        width: 100%;
+        margin: 0 auto;
     }
 
     .thumbnail-list {
@@ -173,6 +196,9 @@
     .thumbnail-list img {
         width: 60px;
         height: 60px;
+    }
+    .product-title {
+        font-size: 25px;
     }
 }
 
@@ -196,6 +222,13 @@
 
 /* ================= footer ================= */
 @media (max-width: 768px) {
+    .footer{
+            padding: 30px;
+
+    }
+}
+
+@media (max-width: 500px) {
     .footer-top {
         flex-direction: column;
         gap: 20px;
@@ -218,7 +251,7 @@
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 380px) {
     .footer {
         padding: 30px 15px 15px 15px;
     }

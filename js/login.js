@@ -26,24 +26,16 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // =========================
-  // نمایش / مخفی کردن پسورد (اصلاح شده)
+  // نمایش / مخفی کردن پسورد
   // =========================
-  document.addEventListener("DOMContentLoaded", () => {
-    // انتخاب همه دکمه های toggle-password
-    document.querySelectorAll(".toggle-password").forEach(btn => {
-      btn.addEventListener("click", e => {
-        e.preventDefault(); // جلوگیری از رفتار پیش فرض دکمه
-
-        // پیدا کردن input داخل همان password-wrapper
-        const wrapper = btn.closest(".password-wrapper");
-        if (!wrapper) return;
-
-        const input = wrapper.querySelector("input[type='password'], input[type='text']");
-        if (!input) return;
-
-        // تغییر نوع input
-        input.type = input.type === "password" ? "text" : "password";
-      });
+  document.querySelectorAll(".toggle-password").forEach(btn => {
+    btn.addEventListener("click", e => {
+      e.preventDefault();
+      const wrapper = btn.closest(".password-wrapper");
+      if (!wrapper) return;
+      const input = wrapper.querySelector("input[type='password'], input[type='text']");
+      if (!input) return;
+      input.type = input.type === "password" ? "text" : "password";
     });
   });
 
@@ -146,7 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // =========================
-  // وضعیت کاربر (نمایش نام / خروج)
+  // وضعیت کاربر (نمایش نام / خروج با تایید)
   // =========================
   function setUserUI() {
     const user = JSON.parse(localStorage.getItem("currentUser"));
@@ -156,8 +148,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
       loginLink.onclick = (e) => {
         e.preventDefault();
-        localStorage.removeItem("currentUser");
-        setUserUI();
+        if (confirm("آیا مطمئن هستید می‌خواهید خارج شوید؟")) {
+          localStorage.removeItem("currentUser");
+          setUserUI();
+        }
       };
 
     } else {

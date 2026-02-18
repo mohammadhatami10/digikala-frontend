@@ -26,7 +26,6 @@
     width: 25px;
     height: 20px;
     cursor: pointer;
-    margin-left: 10px;
     z-index: 10000;
     /* بالاتر از منو */
 }
