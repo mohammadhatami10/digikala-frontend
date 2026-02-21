@@ -50,11 +50,11 @@ function toEnglishNumber(str) {
 
         if (Math.abs(diff) > 60) { // حداقل فاصله برای تشخیص swipe
             if (diff > 0) {
-                // رفتن به اسلاید بعدی
-                currentIndex = (currentIndex + 1) % total;
-            } else {
                 // رفتن به اسلاید قبلی
                 currentIndex = (currentIndex - 1 + total) % total;
+            } else {
+                // رفتن به اسلاید بعدی
+                currentIndex = (currentIndex + 1) % total;
             }
 
             showSlide(currentIndex);
