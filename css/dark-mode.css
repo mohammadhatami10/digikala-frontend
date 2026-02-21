@@ -98,6 +98,12 @@ body.dark-mode .product-card {
     color: #eee;
 }
 
+@media (max-width: 450px) {
+    body.dark-mode .product-card {
+        background: none;
+    }
+}
+
 body.dark-mode .product-section select,
 body.dark-mode .product-section input {
     background-color: #333;
