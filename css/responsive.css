@@ -123,9 +123,7 @@
     }
 
     .slider-btn {
-        width: 30px;
-        height: 30px;
-        font-size: 16px;
+        display: none;
     }
 
     .slider-btn:hover {
@@ -191,9 +189,12 @@
 
 @media (max-width: 450px) {
     .product-grid {
+        max-width: 450px;
         display: flex;
         scroll-snap-align: start;
         gap: 0px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
     }
 
     .product-card {
@@ -214,7 +215,8 @@
         height: 60px;
         border-radius: 100%;
     }
-        .discount-badge {
+
+    .discount-badge {
         top: 5px;
         right: 5px;
         font-size: 10px;
