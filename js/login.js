@@ -28,16 +28,24 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================
   // نمایش / مخفی کردن پسورد
   // =========================
+document.addEventListener("DOMContentLoaded", () => {
+  // انتخاب همه دکمه های toggle-password
   document.querySelectorAll(".toggle-password").forEach(btn => {
     btn.addEventListener("click", e => {
-      e.preventDefault();
+      e.preventDefault(); // جلوگیری از رفتار پیش فرض دکمه
+
+      // پیدا کردن input داخل همان password-wrapper
       const wrapper = btn.closest(".password-wrapper");
       if (!wrapper) return;
+
       const input = wrapper.querySelector("input[type='password'], input[type='text']");
       if (!input) return;
+
+      // تغییر نوع input
       input.type = input.type === "password" ? "text" : "password";
     });
   });
+});
 
   // =========================
   // باز کردن پاپ‌آپ

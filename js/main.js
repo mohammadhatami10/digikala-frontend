@@ -32,6 +32,38 @@ function toEnglishNumber(str) {
         );
     }
 
+    const slider = document.querySelector('.slider');
+
+    let startX = 0;
+    let endX = 0;
+
+    slider?.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+    });
+
+    slider?.addEventListener('touchmove', (e) => {
+        endX = e.touches[0].clientX;
+    });
+
+    slider?.addEventListener('touchend', () => {
+        const diff = startX - endX;
+
+        if (Math.abs(diff) > 60) { // حداقل فاصله برای تشخیص swipe
+            if (diff > 0) {
+                // رفتن به اسلاید بعدی
+                currentIndex = (currentIndex + 1) % total;
+            } else {
+                // رفتن به اسلاید قبلی
+                currentIndex = (currentIndex - 1 + total) % total;
+            }
+
+            showSlide(currentIndex);
+        }
+
+        startX = 0;
+        endX = 0;
+    });
+
     nextBtn?.addEventListener('click', () => {
         currentIndex = (currentIndex + 1) % total;
         showSlide(currentIndex);
@@ -266,10 +298,10 @@ const closePopupBtn = document.querySelector(".close-popup");
 
 // باز کردن پاپ‌آپ
 openAuthBtn.addEventListener("click", (e) => {
-  e.preventDefault();
-  authPopup.classList.add("active");
-  loginForm.classList.add("active");
-  signupForm.classList.remove("active");
+    e.preventDefault();
+    authPopup.classList.add("active");
+    loginForm.classList.add("active");
+    signupForm.classList.remove("active");
 });
 
 // بستن پاپ‌آپ
@@ -277,36 +309,36 @@ closePopupBtn.addEventListener("click", () => authPopup.classList.remove("active
 
 // سوئیچ فرم
 showSignup.addEventListener("click", () => {
-  loginForm.classList.remove("active");
-  signupForm.classList.add("active");
+    loginForm.classList.remove("active");
+    signupForm.classList.add("active");
 });
 showLogin.addEventListener("click", () => {
-  signupForm.classList.remove("active");
-  loginForm.classList.add("active");
+    signupForm.classList.remove("active");
+    loginForm.classList.add("active");
 });
 
 // نمایش/مخفی کردن پسورد
 document.querySelectorAll(".toggle-password").forEach(btn => {
-  btn.addEventListener("click", () => {
-    const input = btn.previousElementSibling;
-    input.type = input.type === "password" ? "text" : "password";
-  });
+    btn.addEventListener("click", () => {
+        const input = btn.previousElementSibling;
+        input.type = input.type === "password" ? "text" : "password";
+    });
 });
 
 // اعتبارسنجی ساده ثبت‌نام
 signupForm.addEventListener("submit", e => {
-  e.preventDefault();
-  let valid = true;
-  const name = document.getElementById("signup-name");
-  const email = document.getElementById("signup-email");
-  const pass = document.getElementById("signup-password");
-  const pass2 = document.getElementById("signup-password2");
-  document.querySelectorAll("#signup-form .error-message").forEach(span => span.textContent = "");
+    e.preventDefault();
+    let valid = true;
+    const name = document.getElementById("signup-name");
+    const email = document.getElementById("signup-email");
+    const pass = document.getElementById("signup-password");
+    const pass2 = document.getElementById("signup-password2");
+    document.querySelectorAll("#signup-form .error-message").forEach(span => span.textContent = "");
 
-  if(name.value.trim().length < 3){ name.nextElementSibling.textContent = "نام کوتاه است"; valid = false; }
-  if(!email.value.includes("@")){ email.nextElementSibling.textContent = "ایمیل نامعتبر"; valid = false; }
-  if(pass.value.length < 6){ pass.nextElementSibling.textContent = "رمز حداقل ۶ کاراکتر"; valid = false; }
-  if(pass.value !== pass2.value){ pass2.nextElementSibling.textContent = "رمزها مطابقت ندارند"; valid = false; }
+    if (name.value.trim().length < 3) { name.nextElementSibling.textContent = "نام کوتاه است"; valid = false; }
+    if (!email.value.includes("@")) { email.nextElementSibling.textContent = "ایمیل نامعتبر"; valid = false; }
+    if (pass.value.length < 6) { pass.nextElementSibling.textContent = "رمز حداقل ۶ کاراکتر"; valid = false; }
+    if (pass.value !== pass2.value) { pass2.nextElementSibling.textContent = "رمزها مطابقت ندارند"; valid = false; }
 
-  if(valid) alert("ثبت نام موفق!");
+    if (valid) alert("ثبت نام موفق!");
 });

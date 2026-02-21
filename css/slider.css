@@ -4,6 +4,7 @@
     position: relative;
     overflow: hidden;
     border-bottom: 1px solid var(--border-color);
+    touch-action: pan-y;    /*حالت لمسی*/
 }
 
 .slider-wrapper {
